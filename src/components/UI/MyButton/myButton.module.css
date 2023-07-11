@@ -1,0 +1,10 @@
+.myButton {
+  padding: 10px 15px;
+  border: 1px solid royalblue;
+  border-radius: 5%;
+  background-color:rgba(95, 158, 255, 0.3);
+}
+
+.myButton:active {
+  background-color:rgba(95, 158, 255, 0.8);
+}
