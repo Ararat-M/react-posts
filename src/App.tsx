@@ -7,19 +7,13 @@ import { MyForm } from "./components/UI/MyForm";
 import { MySelect } from "./components/UI/MySelect";
 
 export interface IPost {
+  [index: string]: string;
   id: string;
   title: string;
   description: string;
 }
 
 export function App() {
-  // const [posts, setPosts] = useState([
-  //   {id: "0", title: "aa", description: "bb"},
-  //   {id: "1", title: "bb", description: "cc"},
-  //   {id: "2", title: "cc", description: "aa"},
-  //   {id: "3", title: "11", description: "22"}
-  // ])
-
   const [posts, setPosts] = useState<IPost[]>([])
 
   const [selectedSort, setSelectedSort] = useState("")
@@ -32,10 +26,15 @@ export function App() {
     setPosts(posts.filter(e => e.id !==  id));
   }
 
+  function sortPosts(sort: string){
+    setSelectedSort(sort);
+    setPosts([...posts].sort( (a: IPost, b: IPost) => a[sort].localeCompare(b[sort]) ))
+  }
+
   return (
     <Layot>
       <MyForm create={createPost}/>
-      {/* <MySelect
+      <MySelect
         value={selectedSort}
         onChange={sortPosts}
         defaultName='Сортировать'
@@ -43,7 +42,7 @@ export function App() {
           {value: "title", name: "Сортировать по заголовку"},
           {value: "description", name: "Сортировать по описанию"},
         ]}
-      /> */}
+      />
       <Main>
         <PostList title="Posts" posts={posts} deleteItem={deletePost}></PostList>
       </Main>

@@ -1,9 +1,11 @@
 import React from 'react'
 import classes from "./postItem.module.css"
 import { MyButton } from '../UI/MyButton';
-import { IPost } from '../../App';
 
-interface IPostItem extends IPost{
+interface IPostItem{
+  id: string;
+  title: string;
+  description: string;
   delete: (id: string) => void;
 }
 
