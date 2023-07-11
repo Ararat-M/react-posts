@@ -1,17 +1,26 @@
 import React from 'react'
 import { MySelect } from '../UI/MySelect'
+import { MyInput } from '../UI/MyInput'
 
 interface IPostFilter {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  filter: {query: string, sort: string}
+  setFilter: React.Dispatch<React.SetStateAction<{
+    query: string;
+    sort: string;
+  }>>
 }
 
-export function PostFilter({value, onChange}: IPostFilter) {
+export function PostFilter({filter, setFilter}: IPostFilter) {
   return (
     <div>
+      <MyInput 
+        value={filter.query}
+        onChange={e => setFilter({query: e.target.value, sort: filter.sort})}
+        placeholder="поиск..." 
+      />
       <MySelect
-        value={value}
-        onChange={onChange}
+        value={filter.sort}
+        onChange={e => setFilter({query: filter.query, sort: e.target.value})}
         defaultName='Сортировать по'
         options={[
           {value: "title", name: "Сортировать по заголовку"},

@@ -4,8 +4,6 @@ import { Layot } from "./components/Layout";
 import { PostList } from "./components/PostList";
 import { Main } from "./components/Main";
 import { MyForm } from "./components/UI/MyForm";
-import { MySelect } from "./components/UI/MySelect";
-import { MyInput } from "./components/UI/MyInput";
 import { PostFilter } from "./components/PostFilter";
 
 export interface IPost {
@@ -18,21 +16,19 @@ export interface IPost {
 export function App() {
   const [posts, setPosts] = useState<IPost[]>([])
 
-  const [selectedSort, setSelectedSort] = useState("")
-
-  const [searchQuery, setSearchQuery] = useState("")
+  const [filter, setFilter] = useState({query: "", sort: ""})
 
   const sortedPosts = useMemo(() => {
-    if (selectedSort) {
-      return [...posts].sort( (a: IPost, b: IPost) => a[selectedSort].localeCompare(b[selectedSort]) )
+    if (filter.sort) {
+      return [...posts].sort( (a: IPost, b: IPost) => a[filter.sort].localeCompare(b[filter.sort]) )
     }
     
     return posts
-  }, [selectedSort, posts])
+  }, [filter.sort, posts])
 
   const sortedAndFilteredPosts = useMemo(() => {
-    return sortedPosts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-  }, [sortedPosts, searchQuery])
+    return sortedPosts.filter(post => post.title.toLowerCase().includes(filter.query.toLowerCase()))
+  }, [sortedPosts, filter.query])
 
   function createPost(newPost: IPost) {
     setPosts([...posts, { id: newPost.id, title: newPost.title, description: newPost.description}]);
@@ -45,15 +41,7 @@ export function App() {
   return (
     <Layot>
       <MyForm create={createPost}/>
-      <MyInput 
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-        placeholder="поиск..." 
-      />
-      <PostFilter
-        value={selectedSort}
-        onChange={e => setSelectedSort(e.target.value)}
-      />
+      <PostFilter filter={filter} setFilter={setFilter} />
       <Main>
         <PostList title="Posts" posts={sortedAndFilteredPosts} deleteItem={deletePost}></PostList>
       </Main>
