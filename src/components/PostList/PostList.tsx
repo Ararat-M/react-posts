@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from "./postList.module.css"
-import nanoid from "nanoid"
 import { PostItem } from '../PostItem'
 import { IPost } from '../../App';
 
@@ -19,7 +18,7 @@ export function PostList({ deleteItem, title, posts}: IPostList) {
       <span className={classes.title}>{title}</span>
       <ul className={classes.list}>
         {posts.map(item => {
-          return <PostItem id={item.id} title={item.title} description={item.description} key={nanoid()} delete={deleteItem}/>
+          return <PostItem id={item.id} title={item.title} description={item.description} key={item.id} delete={deleteItem}/>
         })}
       </ul>
     </div>
