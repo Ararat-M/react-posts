@@ -5,7 +5,7 @@ interface IMySelect {
   options: Array<{value: string, name: string}>;
   defaultName: string;
   value: string;
-  onChange: (e: string) => void;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export function MySelect({options, defaultName, value, onChange }: IMySelect) {
@@ -13,7 +13,7 @@ export function MySelect({options, defaultName, value, onChange }: IMySelect) {
     <div>
       <select 
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => onChange(e)}
       >
         <option disabled value="">{defaultName}</option>
         {options.map((item) => 

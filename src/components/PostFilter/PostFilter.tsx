@@ -3,7 +3,7 @@ import { MySelect } from '../UI/MySelect'
 
 interface IPostFilter {
   value: string;
-  onChange: (e: string) => void;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export function PostFilter({value, onChange}: IPostFilter) {
