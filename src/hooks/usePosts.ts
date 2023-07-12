@@ -10,15 +10,15 @@ export function useSortedPost(posts: IPost[], sort: string) {
     return posts
   }, [sort, posts])
 
-  return sortedPosts
+  return [sortedPosts]
 }
 
 export function useSortedAndFilteredPosts(posts: IPost[], sort: string, query: string) {
-  const sortedPosts = useSortedPost(posts, sort)
+  const [sortedPosts] = useSortedPost(posts, sort)
 
   const sortedAndFilteredPosts = useMemo(() => {
     return sortedPosts.filter(post => post.title.toLowerCase().includes(query.toLowerCase()))
   }, [sortedPosts, query])
 
-  return sortedAndFilteredPosts
+  return [sortedAndFilteredPosts]
 }

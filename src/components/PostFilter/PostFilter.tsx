@@ -24,7 +24,7 @@ export function PostFilter({filter, setFilter}: IPostFilter) {
         defaultName='Сортировать по'
         options={[
           {value: "title", name: "Сортировать по заголовку"},
-          {value: "description", name: "Сортировать по описанию"},
+          {value: "body", name: "Сортировать по описанию"},
         ]}
       />
     </div>

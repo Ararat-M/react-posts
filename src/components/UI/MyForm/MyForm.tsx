@@ -10,12 +10,12 @@ interface IMyForm {
 
 export function MyForm({ create }: IMyForm) {
 
-  const [post, setPost] = React.useState({ title: "", description: ""})
+  const [post, setPost] = React.useState({ title: "", body: ""})
 
   function addNewPost(e:React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    create({ id: nanoid(), title: post.title, description: post.description })
-    setPost({ title: "", description: "" })
+    create({ id: nanoid(), title: post.title, body: post.body })
+    setPost({ title: "", body: "" })
   }
 
   return (
@@ -27,8 +27,8 @@ export function MyForm({ create }: IMyForm) {
       />
       <MyInput
         placeholder="Описание поста"
-        value={post.description}
-        onChange={(e)=>{setPost( {...post, description: e.target.value} )}}
+        value={post.body}
+        onChange={(e)=>{setPost( {...post, body: e.target.value} )}}
       />
       <MyButton onClick={addNewPost}>Добавить пост</MyButton>
     </form>

@@ -5,7 +5,7 @@ import { MyButton } from '../UI/MyButton';
 interface IPostItem{
   id: string;
   title: string;
-  description: string;
+  body: string;
   delete: (id: string) => void;
 }
 
@@ -21,8 +21,8 @@ export function PostItem({ ...props } : IPostItem) {
         <span className={classes.title}>
           {props.title}
         </span>
-        <p className={classes.description}>
-          {props.description}
+        <p className={classes.body}>
+          {props.body}
         </p>
         <span className={classes.id}>
           {props.id}

@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 6px dotted teal;
+  animation: rotate 1.2s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
