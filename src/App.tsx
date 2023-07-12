@@ -7,6 +7,7 @@ import { MyForm } from "./components/UI/MyForm";
 import { PostFilter } from "./components/PostFilter";
 import { MyModal } from "./components/MyModal";
 import { MyButton } from "./components/UI/MyButton";
+import { useSortedAndFilteredPosts } from "./hooks/usePosts";
 
 export interface IPost {
   [index: string]: string;
@@ -17,22 +18,9 @@ export interface IPost {
 
 export function App() {
   const [posts, setPosts] = useState<IPost[]>([])
-
-  const [filter, setFilter] = useState({query: "", sort: ""})
-
+  const [filter, setFilter] = useState({sort: "", query: ""})
   const [modal, setModal] = useState(false)
-
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort( (a: IPost, b: IPost) => a[filter.sort].localeCompare(b[filter.sort]) )
-    }
-    
-    return posts
-  }, [filter.sort, posts])
-
-  const sortedAndFilteredPosts = useMemo(() => {
-    return sortedPosts.filter(post => post.title.toLowerCase().includes(filter.query.toLowerCase()))
-  }, [sortedPosts, filter.query])
+  const sortedAndFilteredPosts = useSortedAndFilteredPosts(posts, filter.sort, filter.query)
 
   function createPost(newPost: IPost) {
     setPosts([...posts, { id: newPost.id, title: newPost.title, description: newPost.description}]);

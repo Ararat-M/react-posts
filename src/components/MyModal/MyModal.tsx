@@ -11,7 +11,7 @@ export function MyModal({children, visibility, setVisibility}: IMyModal) {
   const modalClasses = [classes.modal]
   
   if (visibility) {
-    modalClasses.push([classes.active])
+    modalClasses.push(classes.active)
   }
   
   return (
