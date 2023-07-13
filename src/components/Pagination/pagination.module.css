@@ -1,0 +1,20 @@
+.pages-list {
+  display: flex;
+  justify-content: center;
+  column-gap: 16px;
+  flex-wrap: wrap;
+}
+
+.page {
+  margin-bottom: 20px;
+  min-width: 30px;
+  padding: 6px 0px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.page_active {
+  font-weight: bold;
+  color: teal;
+  border: 2px solid teal;
+}
