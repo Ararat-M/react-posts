@@ -12,7 +12,7 @@ interface IPostFilter {
 
 export function PostFilter({filter, setFilter}: IPostFilter) {
   return (
-    <div>
+    <>
       <MyInput 
         value={filter.query}
         onChange={e => setFilter({query: e.target.value, sort: filter.sort})}
@@ -27,6 +27,6 @@ export function PostFilter({filter, setFilter}: IPostFilter) {
           {value: "body", name: "Сортировать по описанию"},
         ]}
       />
-    </div>
+    </>
   )
 }

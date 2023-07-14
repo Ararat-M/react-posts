@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from "./postList.module.css"
 import { PostItem } from '../PostItem'
-import { IPost } from '../../App';
+import { IPost } from '../../pages/Posts/Posts';
 
 interface IPostList {
   title: string;

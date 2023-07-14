@@ -10,7 +10,7 @@ interface IMySelect {
 
 export function MySelect({options, defaultName, value, onChange }: IMySelect) {
   return (
-    <div>
+    <>
       <select 
         value={value}
         onChange={e => onChange(e)}
@@ -22,6 +22,6 @@ export function MySelect({options, defaultName, value, onChange }: IMySelect) {
           </option>
         )}
       </select>
-    </div>
+    </>
   )
 }
