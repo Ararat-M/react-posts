@@ -7,6 +7,8 @@ interface IPagination {
 }
 
 export function Pagination({pages, currentPage, setCurrentPage}: IPagination) {
+  if (pages.length <= 1) return(<></>)
+  
   return (
     <div className={classes["pages-list"]}>
       {pages.map((elem) => {      

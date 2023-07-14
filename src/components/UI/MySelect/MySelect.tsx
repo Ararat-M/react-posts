@@ -11,7 +11,7 @@ interface IMySelect {
 export function MySelect({options, defaultName, value, onChange }: IMySelect) {
   return (
     <>
-      <select 
+      <select
         value={value}
         onChange={e => onChange(e)}
       >

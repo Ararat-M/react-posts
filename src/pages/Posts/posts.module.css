@@ -13,6 +13,12 @@
   row-gap: 8px;
 }
 
+.controls__limit {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
 .pagination-container {
   margin-top: 30px;
 }

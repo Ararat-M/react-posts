@@ -12,6 +12,7 @@ import { usePagination } from '../../hooks/usePagination'
 import PostService from '../../API/PostSevice'
 import { useFetching } from '../../hooks/useFetching'
 import { getPageCount } from '../../utils/getPageCount'
+import { PostLimit } from '../../components/PostLimit'
 
 export interface IPost {
   [index: string]: string;
@@ -24,25 +25,27 @@ export default function Posts() {
   const [posts, setPosts] = useState<IPost[]>([])
   const [filter, setFilter] = useState({sort: "", query: ""})
   const [modal, setModal] = useState(false)
-  const [totalPages, setTotalPages] = useState(0);
-  const [limit, setLimit] = useState(5);
+  const [totalCount, setTotalCount] = useState(0)
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const [sortedAndFilteredPosts] = useSortedAndFilteredPosts(posts, filter.sort, filter.query)
   const [pages] = usePagination(totalPages);
 
   const [isPostsLoading, postError, fetchPosts] = useFetching(async () => {
     const response = await PostService.getAll(limit, currentPage)
-    const totalCount = response.headers["x-total-count"]
-  
+    const totalCount = response.headers["x-total-count"];
+
+    setTotalCount(totalCount)
     setTotalPages(getPageCount(totalCount, limit))
+    
     setPosts(response.data)
   })
-  
+
   useEffect(() => {
-    fetchPosts();
-  },[currentPage])
+    fetchPosts()
+  }, [currentPage, limit])
   
-   
   function createPost(newPost: IPost) {
     setPosts([...posts, { id: newPost.id, title: newPost.title, body: newPost.body}]);
     setModal(false)
@@ -63,6 +66,13 @@ export default function Posts() {
         </MyModal>
         <div className={classes["controls__filter"]}>
           <PostFilter filter={filter} setFilter={setFilter} />
+        </div>
+        <div className={classes["controls__limit"]}>
+          <PostLimit 
+            limit={limit} 
+            setLimit={setLimit}
+            maxLimit={totalCount}
+          />
         </div>
       </div>
       {postError &&
