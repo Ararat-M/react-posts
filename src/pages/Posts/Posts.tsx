@@ -6,7 +6,7 @@ import { MyForm } from '../../components/UI/MyForm'
 import { PostFilter } from '../../components/PostFilter'
 import { Loader } from '../../components/UI/Loader/Loader'
 import { PostList } from '../../components/PostList'
-import { Pagination } from '../../components/Pagination/Pagination'
+import { Pagination } from '../../components/Pagination'
 import { useSortedAndFilteredPosts } from '../../hooks/usePosts'
 import { usePagination } from '../../hooks/usePagination'
 import PostService from '../../API/PostSevice'
@@ -41,6 +41,7 @@ export default function Posts() {
   useEffect(() => {
     fetchPosts();
   },[currentPage])
+  
    
   function createPost(newPost: IPost) {
     setPosts([...posts, { id: newPost.id, title: newPost.title, body: newPost.body}]);

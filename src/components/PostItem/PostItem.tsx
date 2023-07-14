@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from "./postItem.module.css"
 import { MyButton } from '../UI/MyButton';
+import { useNavigate  } from 'react-router-dom';
 
 interface IPostItem{
   id: string;
@@ -10,7 +11,8 @@ interface IPostItem{
 }
 
 export function PostItem({ ...props } : IPostItem) {
-
+  const navigation = useNavigate()
+  
   function deleteItem() {
     props.delete(props.id);
   }
@@ -28,7 +30,10 @@ export function PostItem({ ...props } : IPostItem) {
           {props.id}
         </span>
       </div>
-      <MyButton onClick={deleteItem}>Удалить</MyButton>
+      <div className={classes.btns}>
+        <MyButton onClick={() => navigation(`${props.id}`)}>Открыть</MyButton>
+        <MyButton onClick={deleteItem}>Удалить</MyButton>
+      </div>
     </li>
   )
 }
