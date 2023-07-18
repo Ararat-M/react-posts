@@ -43,8 +43,10 @@ export default function Posts() {
   })
 
   useEffect(() => {
-    fetchPosts()
-  }, [currentPage, limit])
+    currentPage > totalPages
+      ? setCurrentPage(1)
+      : fetchPosts()
+  }, [currentPage, limit, totalPages])
   
   function createPost(newPost: IPost) {
     setPosts([...posts, { id: newPost.id, title: newPost.title, body: newPost.body}]);
@@ -82,9 +84,11 @@ export default function Posts() {
         ? <Loader />
         : <PostList title="Posts" posts={sortedAndFilteredPosts} deleteItem={deletePost}></PostList>
       }
-      <div className={classes["pagination-container"]}>
-        <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
-      </div>
+      {!isPostsLoading &&
+        <div className={classes["pagination-container"]}>
+          <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </div>
+      }
     </div>
   )
 }

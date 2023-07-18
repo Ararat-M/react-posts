@@ -8,10 +8,9 @@ import Error from '../pages/Error/Error'
 export function AppRoute() {
   return (
     <Routes>
-      <Route path={"/"} element={<div>Main</div>}/>
       <Route path={"/about"} element={<About />}/>
-      <Route path={"/posts"} element={<Posts/>}/>
-      <Route path={"/posts/:id"} element={<PostIdPage/>}/>
+      <Route path={"/"} element={<Posts/>}/>
+      <Route path={"/:id"} element={<PostIdPage/>}/>
       <Route path={"*"} element={<Error />}/>
     </Routes>
   )

@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function About() {
   return (
-    <div>
-      about
-    </div>
+    <h1>
+      Проект для практической работы с react.
+    </h1>
   )
 }

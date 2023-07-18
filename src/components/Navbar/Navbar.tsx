@@ -8,13 +8,10 @@ export function Navbar() {
       <nav className={classes.nav}>
         <ul className={classes.list}>
           <li>
-            <Link className={classes.link} to={"/"}>Main</Link>
-          </li>
-          <li>
             <Link className={classes.link} to={"/about"}>About</Link>
           </li>
           <li>
-            <Link className={classes.link} to={"/posts"}>Posts</Link>
+            <Link className={classes.link} to={"/"}>Posts</Link>
           </li>
         </ul>
       </nav>
